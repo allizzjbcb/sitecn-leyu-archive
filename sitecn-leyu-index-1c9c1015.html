@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼体育 · 专题页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f3f5f8;
+            line-height: 1.7;
+            color: #1e293b;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1421 0%, #1a2538 100%);
+            color: #eef2f6;
+            padding: 4.5rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 10%;
+            width: 180px;
+            height: 180px;
+            background: rgba(56, 178, 172, 0.06);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.25rem;
+            font-weight: 350;
+            color: #b9c9dc;
+            max-width: 600px;
+            margin: 0 auto 0.3rem;
+        }
+
+        .hero .supplement {
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            color: #9aafc5;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding-top: 1.2rem;
+            display: inline-block;
+        }
+
+        /* 浅色正文区容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 2.2rem;
+        }
+
+        /* 卡片风格段落 */
+        .card-section {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.2rem 2.5rem 2rem;
+            box-shadow: 0 10px 30px -12px rgba(0,0,0,0.06);
+            margin-bottom: 2.2rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .card-section:hover {
+            box-shadow: 0 14px 36px -14px rgba(0,0,0,0.08);
+        }
+
+        .card-section h2 {
+            font-size: 1.65rem;
+            font-weight: 550;
+            color: #0a1a2f;
+            margin-bottom: 0.9rem;
+            letter-spacing: -0.01em;
+            border-left: 5px solid #3a8c8a;
+            padding-left: 1rem;
+        }
+
+        .card-section p {
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+        }
+
+        .card-section p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .highlight-link {
+            color: #1d6c6a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s, color 0.2s;
+        }
+
+        .highlight-link:hover {
+            border-bottom: 1px solid #1d6c6a;
+            color: #09403e;
+        }
+
+        /* 紧凑特点列表 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.8rem 1.2rem;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .feature-item {
+            background: #f7f9fc;
+            padding: 1.2rem 1.1rem 1.1rem;
+            border-radius: 20px;
+            border-left: 3px solid #3a8c8a;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-weight: 600;
+            color: #0f2a2a;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-item span {
+            color: #2b3f4f;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: #eef2f6;
+            border-radius: 20px;
+            padding: 1.4rem 1.8rem 1.3rem;
+            margin-top: 1.4rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 550;
+            font-size: 1.1rem;
+            cursor: default;
+            color: #152b38;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini p {
+            margin-top: 0.6rem;
+            font-size: 0.98rem;
+            color: #1f3446;
+        }
+
+        /* 页尾 */
+        .page-footer {
+            text-align: center;
+            margin: 1.5rem 0 2.5rem;
+            padding: 1.8rem 1rem 0.8rem;
+            border-top: 1px solid #d8e0e7;
+            font-size: 0.95rem;
+            color: #4e6478;
+        }
+
+        .page-footer .cta-note {
+            background: #eef2f6;
+            display: inline-block;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            margin-top: 0.4rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .hero .sub {
+                font-size: 1.05rem;
+            }
+            .card-section {
+                padding: 1.8rem 1.3rem;
+            }
+            .card-section h2 {
+                font-size: 1.4rem;
+                padding-left: 0.8rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .faq-mini {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2.8rem 0.8rem 2.6rem;
+            }
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            .container {
+                padding: 1.8rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <section class="hero">
+        <h1>乐鱼体育 · 纵深视野</h1>
+        <p class="sub">从日常查询、对照到延伸阅读，构建连贯的体育信息链</p>
+        <div class="supplement">专题 · 探索 · 整合</div>
+    </section>
+
+    <!-- 正文区 -->
+    <div class="container">
+
+        <!-- 第一段：背景与日常查询 -->
+        <article class="card-section">
+            <h2>查询起点 · 信息锚点</h2>
+            <p>无论是跟踪热门联赛的实时数据，还是回溯历史对阵记录，<a href="https://sitecn-leyu.com.cn" class="highlight-link">乐鱼体育</a>为使用者提供结构化的搜索入口。平台将赛事、球队、球员档案以统一索引呈现，减少跨站点对照的时间成本。在移动端与桌面端保持一致的信息层级，使得日常查询可以快速完成，无需反复筛选。</p>
+            <p>从欧洲五大联赛到北美职业联盟，从国内赛事到国际杯赛，数据更新频率保持与官方源同步，有效降低信息滞后带来的判断偏差。对深度爱好者而言，这种稳定的查询环境是展开后续分析的基础。</p>
+        </article>
+
+        <!-- 第二段：对照与特点卡片 -->
+        <article class="card-section">
+            <h2>对照维度 · 特点解析</h2>
+            <p>体育数据的价值往往在对比中显现。乐鱼体育在赛程、积分、技术统计三个层面内置对照视图，允许将多支队伍或多轮数据并排展示，便于发现趋势与差异。以下为平台部分功能侧重：</p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>赛历对照</strong>
+                    <span>同时段赛事重叠时直观呈现时间线与场地分布</span>
+                </div>
+                <div class="feature-item">
+                    <strong>统计粒度</strong>
+                    <span>支持细分至控球率、射正次数、跑动距离等维度</span>
+                </div>
+                <div class="feature-item">
+                    <strong>历史归档</strong>
+                    <span>过往赛季数据保留完整，可做跨年纵向比对</span>
+                </div>
+                <div class="feature-item">
+                    <strong>快速筛选</strong>
+                    <span>联赛、球队、日期三层筛选，精确到分钟级</span>
+                </div>
+            </div>
+            <p>这些对照工具的设计初衷，是让用户不必在多个页面之间手动摘录，而是在单一界面完成初步研判。对于需要撰写赛前分析、参与讨论的用户，这样的整合能力能节省大量时间。</p>
+        </article>
+
+        <!-- 第三段：延伸阅读与场景 -->
+        <article class="card-section">
+            <h2>延伸阅读 · 从数据到洞察</h2>
+            <p>单一的比分或排名很难反映比赛全貌。乐鱼体育围绕每场赛事汇集关联内容——包括但不限于阵容变动、伤停报告、近期交锋记录、战术摘要等，形成信息延展链。用户可以在查看基础数据后，自然过渡到深度阅读环节。</p>
+            <p>例如，当查询某支球队的连胜纪录时，页面会同步呈现该阶段内的对手强度、主客场分布以及净胜球变化，帮助理解成绩背后的结构性原因。这种延伸阅读的场景，特别适合需要撰写球评、整理资料或参与策略讨论的群体。</p>
+            <p>平台同时提供跨联赛的横向阅读入口，例如将英超与西甲中风格相近的球队进行间接对比，用户可通过标签系统自主探索，而非被动接收推送。</p>
+
+            <!-- FAQ 摘要（简洁） -->
+            <div class="faq-mini">
+                <summary>❓ 常见疑问摘要</summary>
+                <p><strong>问：</strong>如何快速定位两支球队的历史交锋？<br>
+                <strong>答：</strong>在乐鱼体育的“对阵”模块输入双方名称，系统将返回包括友谊赛在内的完整记录，并自动按时间排序。免去逐页翻阅的麻烦。</p>
+                <p><strong>问：</strong>移动端与桌面端功能差异大吗？<br>
+                <strong>答：</strong>核心查询与对照功能完全一致，移动端针对单手操作优化了筛选区布局，长列表阅读体验更流畅。</p>
+            </div>
+        </article>
+
+        <!-- 页尾：提示，不含“进入点击访问”等词 -->
+        <footer class="page-footer">
+            <p>以上专题基于日常查询、对照与延伸阅读逻辑展开。</p>
+            <p>如需直接体验完整数据与功能，可自行检索 <a href="https://sitecn-leyu.com.cn" class="highlight-link">乐鱼体育</a> 并开始使用。</p>
+            <div class="cta-note">信息聚合 · 对照研究 · 持续整合</div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
